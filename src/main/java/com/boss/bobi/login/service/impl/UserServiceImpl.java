@@ -6,8 +6,12 @@ import com.boss.bobi.common.enums.ResultCode;
 import com.boss.bobi.common.model.CommonResult;
 import com.boss.bobi.common.utils.PasswordEncryptUtil;
 import com.boss.bobi.login.entity.User;
+import com.boss.bobi.login.model.FindUserParam;
 import com.boss.bobi.login.service.UserService;
 import com.boss.bobi.login.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,6 +33,33 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public User findByNickName(String nickName) {
         return this.getOne(new LambdaQueryWrapper<User>().eq(User::getNickName, nickName));
+    }
+
+    @Override
+    public CommonResult<?> findUser(FindUserParam findUserParam) {
+        String nickName = findUserParam.getNickName();
+        String position = findUserParam.getPosition();
+        String startTime = findUserParam.getStartTime();
+        String endTime = findUserParam.getEndTime();
+        PageHelper.startPage(findUserParam.getPageNo(), findUserParam.getPageSize());
+        LambdaQueryWrapper<User> qw = new LambdaQueryWrapper<>();
+        qw.select(User::getId, User::getNickName, User::getGender, User::getCreateTime, User::getPosition);
+        if (StringUtils.isNotBlank(nickName)) {
+            qw.eq(User::getNickName, nickName);
+        }
+        if (StringUtils.isNotBlank(position)) {
+            qw.eq(User::getPosition, position);
+        }
+        if (StringUtils.isNotBlank(startTime)) {
+            qw.eq(User::getCreateTime, startTime);
+        }
+        if (StringUtils.isNotBlank(endTime)) {
+            qw.eq(User::getCreateTime, endTime);
+        }
+        qw.orderByAsc(User::getCreateTime);
+        PageInfo<User> pageInfo = new PageInfo<>(this.list(qw));
+
+        return CommonResult.build(ResultCode.SUCCEED, pageInfo);
     }
 
 }

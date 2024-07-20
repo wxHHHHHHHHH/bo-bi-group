@@ -2,12 +2,10 @@ package com.boss.bobi.login.controller;
 
 import com.boss.bobi.common.model.CommonResult;
 import com.boss.bobi.login.entity.User;
+import com.boss.bobi.login.model.FindUserParam;
 import com.boss.bobi.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName : UserController  //类名
@@ -30,5 +28,14 @@ public class UserController {
     @PostMapping("/registerUser")
     public CommonResult<?> registerUser(@RequestBody User user) {
         return userService.registerUser(user);
+    }
+
+
+    /**
+     * 查询用户
+     */
+    @PostMapping("/findUser")
+    public CommonResult<?> findUser(@RequestBody FindUserParam findUserParam) {
+        return userService.findUser(findUserParam);
     }
 }
