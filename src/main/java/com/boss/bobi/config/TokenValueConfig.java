@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 public class TokenValueConfig {
 
 
-    @Autowired
-    private RedissonClient redissonClient;
 
     private JSONObject valueMap(){
         final String token = AccessTokenUtil.getToken();

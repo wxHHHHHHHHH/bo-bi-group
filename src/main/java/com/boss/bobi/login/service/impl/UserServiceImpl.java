@@ -1,6 +1,7 @@
 package com.boss.bobi.login.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.boss.bobi.common.enums.ResultCode;
 import com.boss.bobi.common.model.CommonResult;
@@ -13,6 +14,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author wx
@@ -41,7 +44,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String position = findUserParam.getPosition();
         String startTime = findUserParam.getStartTime();
         String endTime = findUserParam.getEndTime();
-        PageHelper.startPage(findUserParam.getPageNo(), findUserParam.getPageSize());
+
         LambdaQueryWrapper<User> qw = new LambdaQueryWrapper<>();
         qw.select(User::getId, User::getNickName, User::getGender, User::getCreateTime, User::getPosition);
         if (StringUtils.isNotBlank(nickName)) {
@@ -57,8 +60,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             qw.eq(User::getCreateTime, endTime);
         }
         qw.orderByAsc(User::getCreateTime);
+        PageHelper.startPage(findUserParam.getPageNo(), findUserParam.getPageSize());
         PageInfo<User> pageInfo = new PageInfo<>(this.list(qw));
-
         return CommonResult.build(ResultCode.SUCCEED, pageInfo);
     }
 

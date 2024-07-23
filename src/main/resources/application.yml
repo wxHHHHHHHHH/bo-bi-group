@@ -29,5 +29,7 @@ spring:
     date-format: "yyyy-MM-dd"
 jwt:
   salt: "fan_hua_si_jing_bu_guo_meng_yi_chang_ba_le_ba_le_yi_qie_dou_sui_feng_ba"
-
+mybatis-plus:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/**/*.xml
 

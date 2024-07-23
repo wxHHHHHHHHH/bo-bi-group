@@ -51,6 +51,7 @@ public class AccessTokenInterceptor implements HandlerInterceptor {
 
         if (StringUtils.isNotBlank(token)) {
             //验证token
+            System.out.println(token);
             boolean verify = JWTUtil.verify(token, JwtUtil.key.getBytes());
             if (verify) {
                 JWT jwt = JWTUtil.parseToken(token);

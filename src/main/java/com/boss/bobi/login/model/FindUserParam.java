@@ -12,8 +12,8 @@ import lombok.Setter;
 @Setter
 public class FindUserParam {
 
-    private int pageNo = 1;
-    private int pageSize = 10;
+    private Integer pageNo = 1;
+    private Integer pageSize = 6;
 
     //昵称
     private String nickName;
