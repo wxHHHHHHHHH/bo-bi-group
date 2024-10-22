@@ -43,6 +43,7 @@ public class JwtUtil {
         payload.put("id", user.getId());
         payload.put("nickName",user.getNickName());
         payload.put("level", user.getLevel());
+        payload.put("dirId", user.getDirId());
         String token = JWTUtil.createToken(payload, key.getBytes());
         LOG.info(token);
         return token;

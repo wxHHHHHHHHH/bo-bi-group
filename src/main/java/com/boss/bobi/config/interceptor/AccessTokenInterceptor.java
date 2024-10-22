@@ -59,7 +59,7 @@ public class AccessTokenInterceptor implements HandlerInterceptor {
                 String token2 = redisTemplate.opsForValue().get(RedisNameEnums.TokenKey.TOKEN.getCode() + nickName);
                 if (!StringUtils.equals(token, token2)) {
                     //token失效
-                    setResponse(response,CommonResult.build(ResultCode.DEFEATED,"token失效！"));
+                    setResponse(response,CommonResult.build(ResultCode.LOSE_EFFECTIVENESS,"token失效！"));
                     return false;
                 }
                 AccessTokenUtil.setToken(token);
@@ -67,13 +67,13 @@ public class AccessTokenInterceptor implements HandlerInterceptor {
                 return true;
             } else {
 //              未验证通过
-                setResponse(response,CommonResult.build(ResultCode.DEFEATED,"token验证未通过！"));
+                setResponse(response,CommonResult.build(ResultCode.CHECK_FAIL,"token验证未通过！"));
                 return false;
             }
 
         } else {
             //未登录
-            setResponse(response,CommonResult.build(ResultCode.DEFEATED,"请先登录！"));
+            setResponse(response,CommonResult.build(ResultCode.NO_LOGIN,"请先登录！"));
             return false;
         }
 

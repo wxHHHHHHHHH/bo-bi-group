@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
- *
+ * 
  * @TableName user
  */
 @TableName(value ="user")
@@ -18,7 +20,7 @@ public class User implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -61,17 +63,45 @@ public class User implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @TableField(value = "update_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
-
+    /**
+     * 职务
+     */
     @TableField(value = "position")
     private String position;
+
+    /**
+     * 目录id
+     */
+    @TableField(value = "dir_id")
+    private Integer dirId;
+
+    /**
+     * 头像地址
+     */
+    @TableField(value = "avatar_url")
+    private String avatarUrl;
+
+    /**
+     * 地区
+     */
+    @TableField(value = "area")
+    private String area;
+
+    /**
+     * 姓名
+     */
+    @TableField(value = "real_name")
+    private String realName;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

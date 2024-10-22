@@ -4,6 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boss.bobi.login.mapper.UserMapper">
 
+    <resultMap id="BaseResultMap" type="com.boss.bobi.login.entity.User">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="INTEGER"/>
+            <result property="salt" column="salt" jdbcType="VARCHAR"/>
+            <result property="level" column="level" jdbcType="INTEGER"/>
+            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="position" column="position" jdbcType="VARCHAR"/>
+            <result property="dirId" column="dir_id" jdbcType="INTEGER"/>
+            <result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"/>
+            <result property="area" column="area" jdbcType="VARCHAR"/>
+            <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+    </resultMap>
 
-
+    <sql id="Base_Column_List">
+        id,nick_name,password,
+        gender,salt,level,
+        create_user,create_time,update_time
+    </sql>
 </mapper>

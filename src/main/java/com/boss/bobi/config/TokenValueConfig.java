@@ -27,7 +27,7 @@ public class TokenValueConfig {
     }
 
     /**
-     * 获取当前登录用户的经销商编号
+     * 获取当前登录id
      * @return
      */
     public Integer getId(){
@@ -42,5 +42,12 @@ public class TokenValueConfig {
         return valueMap().getInt("level");
     }
 
+
+    /**
+     * 获取目录编号
+     */
+    public Integer getDirID(){
+        return valueMap().getInt("dirId");
+    }
 
 }

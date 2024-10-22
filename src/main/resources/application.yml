@@ -2,15 +2,16 @@ server:
   port: 9999
   servlet:
     context-path: /boss-bo-bi
+
 # 数据库连接
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://60.205.8.116:33067/boss?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&useSSL=false
+    url: jdbc:mysql://47.120.49.135:33067/boss?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&useSSL=false
     username: boss
     password: RDb7bTGYKrht5fCS
   redis:
-    host: 60.205.8.116
+    host: 47.120.49.135
     port: 63799
 
     jedis:
@@ -27,9 +28,36 @@ spring:
     timeout: 10000
   jackson:
     date-format: "yyyy-MM-dd"
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
 jwt:
   salt: "fan_hua_si_jing_bu_guo_meng_yi_chang_ba_le_ba_le_yi_qie_dou_sui_feng_ba"
 mybatis-plus:
+
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:mapper/**/*.xml
+yunPan:
+#  前缀
+  pre: https://open-api.123pan.com
+#  请求头
 
+  request_header_platform: platform
+  request_header_platform_value: open_platform
+  request_header_authorization: Authorization
+
+#  请求地址
+  mkdir: /upload/v1/file/mkdir
+  create: /upload/v1/file/create
+  fileList: /api/v2/file/list
+  direct-linkUrl: /api/v1/direct-link/url
+  getM3u8: /api/v1/direct-link/get/m3u8
+  direct-linkEnable: /api/v1/direct-link/enable
+  access_token_url: /api/v1/access_token
+  get_upload_url: /upload/v1/file/get_upload_url
+  upload_complete: /upload/v1/file/upload_complete
+  upload_async_result: /upload/v1/file/upload_async_result
+
+#  父文件夹id
+  parentFileID: 8146267

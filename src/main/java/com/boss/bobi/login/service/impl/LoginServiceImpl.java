@@ -52,6 +52,7 @@ public class LoginServiceImpl implements LoginService {
         map.put("token", token);
         map.put("nickName", user.getNickName());
         map.put("level", user.getLevel());
+        map.put("dirId", user.getDirId());
         return CommonResult.build(ResultCode.SUCCEED,map);
     }
 }

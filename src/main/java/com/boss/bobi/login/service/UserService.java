@@ -4,6 +4,7 @@ import com.boss.bobi.common.model.CommonResult;
 import com.boss.bobi.login.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.boss.bobi.login.model.FindUserParam;
+import com.boss.bobi.login.vo.UpdatePasswordVo;
 
 /**
 * @author wx
@@ -17,4 +18,10 @@ public interface UserService extends IService<User> {
     User findByNickName(String nickName);
 
     CommonResult<?> findUser(FindUserParam findUserParam);
+
+    CommonResult<?> updatePassword(UpdatePasswordVo updatePasswordVo);
+
+    User getMyself();
+
+    CommonResult<?> updateUser(User user);
 }
